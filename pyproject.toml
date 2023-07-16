@@ -9,6 +9,7 @@ packages = [{include = "django_project"}]
 [tool.poetry.dependencies]
 python = "^3.11"
 django = "^4.2.3"
+python-dotenv = "^1.0.0"
 
 
 [build-system]
