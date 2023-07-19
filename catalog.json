@@ -1,0 +1,185 @@
+[
+  {
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": {
+      "name": "Веб-разработка",
+      "description": "Плагины, фреймворки и примеры, связанные с веб-разработкой, включая HTML, CSS, JavaScript, фронтенд и бэкенд технологии"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": {
+      "name": "Мобильная разработка",
+      "description": "Плагины и примеры для мобильных приложений, таких как Android и iOS."
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 3,
+    "fields": {
+      "name": "Базы данных",
+      "description": "Плагины и примеры для работы с различными базами данных, такими как MySQL, PostgreSQL, MongoDB и другими."
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 4,
+    "fields": {
+      "name": "Графика и дизайн",
+      "description": "Графические ресурсы, стили, иконки, шрифты и примеры дизайна."
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 5,
+    "fields": {
+      "name": "Искусственный интеллект",
+      "description": "Плагины и примеры, связанные с машинным обучением, нейронными сетями и другими алгоритмами искусственного интеллекта.\nИнтеграция: Категория, которая объединяет плагины и примеры для интеграции различных сервисов и API."
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+      "name": "JSImage",
+      "description": "Галерея изображений на JavaScript",
+      "image": "",
+      "category": 1,
+      "price": "28000.00",
+      "create_date": "2023-07-19",
+      "last_change_date": "2023-07-19"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+      "name": "Vue.JS",
+      "description": "Фреймворк для Веб-Приложений",
+      "image": "",
+      "category": 1,
+      "price": "120_000.00",
+      "create_date": "2023-07-19",
+      "last_change_date": "2023-07-19"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 3,
+    "fields": {
+      "name": "HTMLSample",
+      "description": "Простой шаблон сайта на HTML и CSS.",
+      "image": "",
+      "category": 1,
+      "price": "1000.00",
+      "create_date": "2023-07-19",
+      "last_change_date": "2023-07-19"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 4,
+    "fields": {
+      "name": "AGL",
+      "description": "Android Geolocation Library - Модуль для работы с геолокацией.",
+      "image": "",
+      "category": 2,
+      "price": "230_000.00",
+      "create_date": "2023-07-19",
+      "last_change_date": "2023-07-19"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 5,
+    "fields": {
+      "name": "RNUC",
+      "description": "React Native UI Components - Компоненты пользовательского интерфейса.",
+      "image": "",
+      "category": 2,
+      "price": "67_000.00",
+      "create_date": "2023-07-19",
+      "last_change_date": "2023-07-19"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 6,
+    "fields": {
+      "name": " Data Management ",
+      "description": "MySQL Data Management Module - Управление данными.",
+      "image": "",
+      "category": 3,
+      "price": "10_000.00",
+      "create_date": "2023-07-19",
+      "last_change_date": "2023-07-19"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 7,
+    "fields": {
+      "name": "PSQL BackUP",
+      "description": "PostgreSQL Backup Script - Скрипт для резервного копирования базы данных.",
+      "image": "",
+      "category": 3,
+      "price": "170_000.00",
+      "create_date": "2023-07-19",
+      "last_change_date": "2023-07-19"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 8,
+    "fields": {
+      "name": "ImageCollection",
+      "description": "Коллекция иконок для веб-приложений.",
+      "image": "",
+      "category": 4,
+      "price": "170_000.00",
+      "create_date": "2023-07-19",
+      "last_change_date": "2023-07-19"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 9,
+    "fields": {
+      "name": "MDK collections",
+      "description": "Material Design UI Kit - Набор графических ресурсов.",
+      "image": "",
+      "category": 4,
+      "price": "170_000.00",
+      "create_date": "2023-07-19",
+      "last_change_date": "2023-07-19"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 10,
+    "fields": {
+      "name": "ML library",
+      "description": "Машинное обучение с библиотекой TensorFlow",
+      "image": "",
+      "category": 5,
+      "price": "170_000.00",
+      "create_date": "2023-07-19",
+      "last_change_date": "2023-07-19"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 11,
+    "fields": {
+      "name": "ImageRecognition",
+      "description": "Нейронная сеть для распознавания образов.",
+      "image": "",
+      "category": 5,
+      "price": "170_000.00",
+      "create_date": "2023-07-19",
+      "last_change_date": "2023-07-19"
+    }
+  }
+]
