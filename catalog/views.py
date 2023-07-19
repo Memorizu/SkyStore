@@ -13,7 +13,6 @@ def index(request):
 
 def contacts(request):
     contact = Contact.objects.get(country='Россия')
-    print(contact.address)
     if request.method == 'POST':
         print(request.POST.get('name'))
         print(request.POST.get('phone'))
