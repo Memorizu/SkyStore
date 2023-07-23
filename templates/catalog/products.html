@@ -1,0 +1,27 @@
+{% extends 'catalog/base.html'%}
+{% load my_tags %}
+{% block content %}
+<div class="container">
+    <div class="row text-center">
+        {% for object in object_list %}
+        <div class="col-3">
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">{{ object.name }}</h4>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title pricing-card-title">{{object.price}}</h1>
+                    <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+                        <img class="card-img-top"
+                        src="{{ object.image | media_tag}}"
+                        alt="Card image cap">
+                        <li>- {{ object.description }}</li>
+                    </ul>
+                    <a href="" type="button" class="btn btn-lg btn-block btn-outline-primary">Купить</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
