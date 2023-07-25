@@ -34,12 +34,12 @@ class Product(models.Model):
 
 
 class Contact(models.Model):
-    country = models.CharField(max_length=100, verbose_name='Страна')
-    INN = models.CharField(max_length=50, verbose_name='ИНН')
-    address = models.CharField(max_length=200, verbose_name='Адрес')
+    name = models.CharField(max_length=100, verbose_name='имя')
+    phone = models.CharField(max_length=100, verbose_name='телефон')
+    message = models.TextField(**NULLABLE, verbose_name='Адрес')
 
     def __str__(self):
-        return f'{self.country} - {self.address}'
+        return f'{self.name} - {self.phone}'
 
     class Meta:
         verbose_name = 'Контакт'

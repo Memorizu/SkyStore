@@ -1,37 +1,42 @@
 from django.shortcuts import render
-from catalog.models import Product, Contact, Category
+from django.urls import reverse_lazy
+from django.views.generic import ListView, CreateView
+
+from catalog.models import Product, Category, Contact
 
 
-def index(request):
-    context = {
-        'object_list': Category.objects.all(),
+class CategoryListView(ListView):
+    model = Category
+    extra_context = {
         'title': 'Категории'
     }
 
-    return render(request, 'catalog/index.html', context)
 
-
-def contacts(request):
-    contact = Contact.objects.get(country='Россия')
-    if request.method == 'POST':
-        print(request.POST.get('name'))
-        print(request.POST.get('phone'))
-        print(request.POST.get('message'))
-    return render(request, 'catalog/contacts.html', {'contact': contact})
-
-
-def product(request, pk: int):
-    category = Category.objects.get(pk=pk)
-    context = {
-        'object_list': Product.objects.filter(category_id=pk),
-        'title': f'Продукты категории {category}'
+class ProductListView(ListView):
+    model = Product
+    extra_context = {
+        'title': 'Продукты'
     }
-    return render(request, 'catalog/product.html', context)
 
 
-def all_product(request):
+class ContactCreateView(CreateView):
+    model = Contact
+    fields = ('name', 'phone', 'message')
+    success_url = reverse_lazy('catalog:category')
 
-    context = {
-        'object_list': Product.objects.all()
-    }
-    return render(request, 'catalog/products.html', context)
+
+class ProductByCategoryListView(ListView):
+    model = Product
+    template_name = 'catalog/product.html'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.filter(category_id=self.kwargs.get('pk'))
+        return queryset
+
+    def get_context_data(self, *args, **kwargs):
+        context_data = super().get_context_data(*args, **kwargs)
+        category_item = Category.objects.get(pk=self.kwargs.get('pk'))
+        context_data['category_id'] = category_item
+        context_data['title'] = f'Продукты категории {category_item.name}'
+        return context_data

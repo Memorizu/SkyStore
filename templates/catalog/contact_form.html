@@ -5,24 +5,20 @@
         <div class="col-lg-9 col-md-6 col-sm-12">
             <div class="card mb-4 box-shadow">
                 <div class="card-body">
-                    {% if contact %}
                         <table class="table table-striped">
                             <tr>
                                 <td class="w-25">Страна</td>
-                                <td>{{ contact.country }}</td>
+                                <td>Россия</td>
                             </tr>
                             <tr>
                                 <td class="w-25">ИНН</td>
-                                <td>{{ contact.INN }}</td>
+                                <td>11-22334455</td>
                             </tr>
                             <tr>
                                 <td class="w-25">Адрес</td>
-                                <td>{{ contact.address }}</td>
+                                <td>г. Казань, Декабристов 144</td>
                             </tr>
                         </table>
-                    {% else %}
-                        <p>Контактные данные не найдены.</p>
-                    {% endif %}
                 </div>
             </div>
         </div>
@@ -53,4 +49,5 @@
             </div>
         </div>
     </div>
+</div>
 {% endblock %}
