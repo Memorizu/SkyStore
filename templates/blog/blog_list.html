@@ -9,20 +9,24 @@
                     <div class="text-center">
                         <h1>{{ blog.title }}</h1>
                     </div>
-                    <img class="card-img-top"
+                    <img class="card-img-top img-fluid img-thumbnail"
                         src="{{ blog.image | media_tag}}"
                         alt="Card image cap">
                     <div class="card-body">
-                        <p class="card-text">{{ blog.body}}</p>
+                        <p class="card-text">{{ blog.body | truncatechars:50}}</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
                                 <a href="{% url 'blog:detail' blog.pk %}">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                    <button type="button" class="btn btn-sm btn-outline-primary">View</button>
                                 </a>
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Del</button>
+                                <a href="{% url 'blog:edit' blog.pk %}">
+                                    <button type="button" class="btn btn-sm btn-outline-primary">Edit</button>
+                                </a>
+                                <a href="{% url 'blog:delete' blog.pk %}">
+                                    <button type="button" class="btn btn-sm btn-outline-primary">Del</button>
+                                </a>
                             </div>
-                            <small class="text-body-secondary">{{ blog.views_count}}</small>
+                            <small class="text-body-secondary">Просмотры: {{ blog.views_count}}</small>
                         </div>
                     </div>
                 </div>
