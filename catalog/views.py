@@ -19,10 +19,7 @@ class ProductListView(ListView):
     }
 
 
-class ContactCreateView(CreateView):
-    model = Contact
-    fields = ('name', 'phone', 'message')
-    success_url = reverse_lazy('catalog:category')
+
 
 
 class ProductByCategoryListView(ListView):
