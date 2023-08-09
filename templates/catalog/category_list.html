@@ -8,7 +8,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ object.name }}</h5>
                     <p class="card-text">{{ object.description | truncatechars:100}}.</p>
-                    <a class="p-2 btn btn-outline-primary" href="{% url 'catalog:product' object.pk %}">К продуктам</a>
+                    <a class="p-2 btn btn-outline-primary" href="{% url 'product:product' object.pk %}">К продуктам</a>
                 </div>
             </div>
         </div>

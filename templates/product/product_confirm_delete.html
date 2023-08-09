@@ -1,0 +1,18 @@
+{% extends 'catalog/base.html' %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="card">
+                <h5 class="card-header">Удаление Продукта</h5>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="card-body">
+                        <h5 class="card-title">Вы действительно хотите удалить Продукт {{ object.name }}</h5>
+                        <button type="submit" class="btn btn-outline-danger">Подтвердить</button>
+                        <a href="{% url 'product:products' %}" class="btn btn-outline-primary">Отмена</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
