@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'contact.apps.ContactConfig',
     'product.apps.ProductConfig',
     'version.apps.VersionConfig',
+    'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
@@ -141,19 +142,21 @@ USE_TZ = True
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+AUTH_USER_MODEL = 'users.User'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.yandex.ru'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
-EMAIL_USE_TLS = True
-EMAIL_USE_SSL = False
-
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'kaidohmaru1989@yandex.ru'
+EMAIL_HOST_PASSWORD = 'wjijfrnbywkjtkkl'
+EMAIL_USE_SSL = True
+EMAIL_USE_TLS = False
+DEFAULT_FROM_EMAIL = 'kaidohmaru1989@yandex.ru'

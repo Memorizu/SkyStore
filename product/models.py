@@ -1,5 +1,6 @@
 from django.db import models
 from catalog.models import Category
+from users.models import User
 
 
 NULLABLE = {'blank': True, 'null': True}
@@ -12,7 +13,8 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=20, decimal_places=2, verbose_name='Цена за покупку')
     create_date = models.DateField(auto_now_add=True, verbose_name='Дата создания')
     last_change_date = models.DateField(auto_now=True, verbose_name='Дата последнего изменения')
-
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1, verbose_name='пользователь')
+    
     def __str__(self):
         return f'{self.name} - {self.price}'
 

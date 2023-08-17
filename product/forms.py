@@ -20,6 +20,9 @@ class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = '__all__'
+        widgets = {
+            'user': forms.HiddenInput
+        }
 
     def clean_field(self, field_name):
         cleaned_data = self.cleaned_data.get(field_name)

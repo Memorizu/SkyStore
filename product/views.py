@@ -1,7 +1,8 @@
 from typing import Any, Dict
+from django import http
 from django.forms import inlineformset_factory
 from django.forms.models import BaseModelForm
-from django.http import HttpResponse
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from product.models import Product
 from django.views.generic import CreateView, UpdateView, ListView, DetailView, DeleteView
@@ -10,13 +11,21 @@ from catalog.models import Category
 from product.forms import ProductForm
 from version.forms import VersionForm
 from version.models import Version
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class ProductListView(ListView):
+class ProductListView(LoginRequiredMixin, ListView):
     model = Product
     extra_context = {
         'title': 'Продукты'
     }
+    
+    @method_decorator(login_required(login_url=reverse_lazy('users:login')))
+    def dispatch(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
+        return super().dispatch(request, *args, **kwargs)
+
 
 class ProductDetailView(DetailView):
     model = Product
@@ -26,10 +35,19 @@ class ProductDetailView(DetailView):
         queryset = queryset.filter(id=self.kwargs.get('pk'))
         return queryset
     
-class ProductCreateView(CreateView):
+     
+class ProductCreateView(LoginRequiredMixin, CreateView):
     model = Product
     form_class = ProductForm
     success_url = reverse_lazy('catalog:category')
+    
+    @method_decorator(login_required(login_url=reverse_lazy('users:login')))
+    def dispatch(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
+        return super().dispatch(request, *args, **kwargs)
+    
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
     
     
 class ProductUpdateView(UpdateView):
@@ -60,7 +78,8 @@ class ProductUpdateView(UpdateView):
         return super().form_valid(form)
     
     
-class ProductByCategoryListView(ListView):
+  
+class ProductByCategoryListView(LoginRequiredMixin, ListView):
     model = Product
 
     def get_queryset(self):
@@ -74,6 +93,10 @@ class ProductByCategoryListView(ListView):
         context_data['category_id'] = category_item
         context_data['title'] = f'Продукты категории {category_item.name}'
         return context_data
+
+    @method_decorator(login_required(login_url=reverse_lazy('users:login')))
+    def dispatch(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
+        return super().dispatch(request, *args, **kwargs)
 
 
 class ProductDeleteView(DeleteView):
