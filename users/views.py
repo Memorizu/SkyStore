@@ -61,7 +61,7 @@ def verify_email(request, token):
     
     
 def generate_password(request):
-    new_password = ''.join(str([random.randint(0, 9) for _ in range(12)]))
+    new_password = ''.join([str(random.randint(0, 9)) for _ in range(12)])
     request.user.set_password(new_password)
     
     send_mail(
