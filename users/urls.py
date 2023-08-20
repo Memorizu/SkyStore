@@ -14,4 +14,5 @@ urlpatterns = [
     path('profile/', ProfileView.as_view(), name='profile'),
     path('verify/<str:token>/', verify_email, name='verify'),
     path('profile/genpassword/', generate_password, name='generate_password'),
+    
 ]

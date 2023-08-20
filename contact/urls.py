@@ -7,5 +7,5 @@ app_name = ContactConfig.name
 
 
 urlpatterns = [
-    path('', ContactCreateView.as_view(), name='contacts')  
+    path('', ContactCreateView.as_view(), name='contact')  
 ]

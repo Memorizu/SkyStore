@@ -21,7 +21,7 @@ class ProductForm(forms.ModelForm):
         model = Product
         fields = '__all__'
         widgets = {
-            'user': forms.HiddenInput
+            'user': forms.HiddenInput,
         }
 
     def clean_field(self, field_name):
