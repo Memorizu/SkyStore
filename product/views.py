@@ -8,11 +8,10 @@ from django.shortcuts import render
 from product.models import Product
 from django.views.generic import CreateView, UpdateView, ListView, DetailView, DeleteView
 from django.urls import reverse, reverse_lazy
-from product.forms import ProductForm
+from product.forms import ModeratorProductForm, ProductForm
 from version.forms import VersionForm
 from version.models import Version
 from django.contrib.auth.decorators import login_required, permission_required
-from django.utils.decorators import method_decorator
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 
 
@@ -27,7 +26,6 @@ class ProductListView(LoginRequiredMixin, ListView):
         category_id = self.kwargs.get('pk')
         queryset = Product.objects.filter(category_id=category_id)
         return queryset
-    
     
 
 class ProductDetailView(LoginRequiredMixin, DetailView):
@@ -46,10 +44,14 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
     
 class ProductUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = Product
-    form_class = ProductForm
     success_url = reverse_lazy('catalog:category')
     
     permission_required = 'product.can_change_desc_permission'
+    
+    def get_form_class(self):
+        if self.request.user.is_staff:
+            return ModeratorProductForm
+        return ProductForm
     
     def has_permission(self):
         obj = self.get_object()
@@ -99,7 +101,7 @@ class ProductUserLIstView(LoginRequiredMixin, ListView):
     model = Product
     
     def get_queryset(self):
-        queryset =  super().get_queryset()
+        queryset = super().get_queryset()
         user = self.request.user
         queryset = Product.objects.filter(user_id=user.id)
         return queryset

@@ -161,3 +161,5 @@ EMAIL_HOST_PASSWORD = 'wjijfrnbywkjtkkl'
 EMAIL_USE_SSL = True
 EMAIL_USE_TLS = False
 DEFAULT_FROM_EMAIL = 'kaidohmaru1989@yandex.ru'
+
+

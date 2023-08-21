@@ -38,4 +38,15 @@ class ProductForm(forms.ModelForm):
     def clean_description(self):
         return self.clean_field('description')
         
+
+class ModeratorProductForm(forms.ModelForm):
     
+    class Meta:
+        model = Product
+        fields = ['description', 'category', 'is_published']
+        
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'
