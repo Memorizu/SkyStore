@@ -13,8 +13,11 @@ class ProductForm(forms.ModelForm):
         
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'form-control'
+            if field_name == 'is_published':
+                field.widget.attrs['class'] = None
             if field_name == 'category':
                 field.help_text = 'Выберите категорию'
+            
                 
               
     class Meta:
@@ -39,14 +42,8 @@ class ProductForm(forms.ModelForm):
         return self.clean_field('description')
         
 
-class ModeratorProductForm(forms.ModelForm):
+class ModeratorProductForm(ProductForm):
     
     class Meta:
         model = Product
         fields = ['description', 'category', 'is_published']
-        
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        
-        for field_name, field in self.fields.items():
-            field.widget.attrs['class'] = 'form-control'
